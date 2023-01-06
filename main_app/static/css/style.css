@@ -1,0 +1,35 @@
+/* @import url('http://fonts.cdnfonts.com/css/scooby-doo-2'); */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-image: url(https://c.tenor.com/cqblh60UAHYAAAAC/scoobydoo-run.gif);
+    font-family: 'Scooby Doo', sans-serif;
+    background-size: cover;
+}
+
+main {
+    flex: 1 0 auto;
+    
+}
+
+footer {
+    padding-top: 0;
+    text-align: right;
+    background-color: darkcyan;
+}
+.container {
+    color:gold;
+}
+nav {
+    background-color:cornflowerblue;
+}
+.page-footer {
+  
+    background-color:aquamarine
+}
+.card {
+background-color:gold;
+color:cornflowerblue;
+}
+

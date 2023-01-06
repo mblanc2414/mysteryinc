@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Characters List</h1>
+
+{% for character in characters %}
+<div class="card">
+  <a href="{% url 'detail' character.id %}">
+    <div class="card-content">
+      <span class="card-title">{{ character.name }}</span>
+      <p>Character: {{ character.alias }}</p>
+      <p>Description: {{ character.description }}</p>
+      {% if character.alias > 0 %}
+      <p>Alias: {{ character.alias }}</p>
+      {% else %}
+      <p>Origin:{{character.origin}} </p>
+      {% endif %}
+    </div>
+  </a>
+</div>
+{% endfor %} {% endblock %}

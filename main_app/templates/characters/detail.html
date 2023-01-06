@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Character Details</h1>
+
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+            <span class="card-tile"> {{ characters.name }}</span>
+            <p>Character: {{ characters.name }}</p>
+            <p>Description: {{ characters.description }}</p>
+            {% if characters.alias > 0 %}
+            <p>Alias: {{ characters.alias }}</p>
+            {% else %}
+            <p>Origin: {{ characters.origin }}</p>
+        
+        </div>
+        <div class="card-action">
+            <a href="{% url 'Characters_update' characters.id %}">Edit</a>
+            <a href="{% url 'Characters_delete' characters.id %}">Delete</a>
+        </div>
+    </div>
+    <form action="{% url 'add_unmasked' characters.id %}" method="post">
+        {% csrf_token %} {{ unmasking_form.as_p }}
+        <!-- <input type="submit" class="btn" value="Add Location" /> -->
+    </form>
+    <br />
+    {% if character.unmasked_for_today %}
+    <div class="card-panel teal-text center-align">
+        {{character.name}} has been unmasked today
+    </div>
+    {% else %}
+    <!-- <div class="card-panel red-text center-align">
+        {{character.name}} is close to being unmasked
+    </div> -->
+{% endif %} 
+{% for photo in character.photo_set.all %} 
+<img class="responsive-img card-panel" src="{{ photo.url }}" alt="{{ characters.name }}">
+{% empty %} 
+<div class="card-panel teal-text center-align">No Photos Uploaded</div>
+{% endfor %} 
+<form 
+    action="{% url 'add_photo' characters.id %}" 
+    class="card-panel"
+    method="POST"
+    enctype="multipart/form-data"
+    >
+    {% csrf_token %}
+    <input type="file" name="photo-file" />
+    <br />
+    <br />
+    <input type="submit" class="btn" value="upload photo">
+</form>
+</div>
+<hr />
+    <script>
+        var dateEl = document.getElementById("id_date");
+        M.Datepicker.init(dateEl, {
+          format: "yyyy-mm-dd",
+          defaultDate: new Date(),
+          setDefaultDate: true,
+          autoClose: true,
+        });
+    
+        var selectEl = document.getElementById("id_meal");
+        M.FormSelect.init(selectEl);
+      </script>
+      {% endif %} 
+      {% endblock %}
+    </div>
+</div>
